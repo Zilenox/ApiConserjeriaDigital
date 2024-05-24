@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  apiconserjeriadigital:
+    image: ${DOCKER_REGISTRY-}apiconserjeriadigital
+    container_name: Api_conserjeria
+    build:
+      context: .
+      dockerfile: ApiConserjeriaDigital/Dockerfile
+    ports:
+        - "8080:8080"
+        - "8081:8081"
+  ConserjeriaDatabase:
+    image: postgres:latest
+    container_name: ConserjeriaDB
+    environment:
+        - POSTGRES_DB=ConserjeriaDigitalDB
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+    ports:
+        - 5432:5432

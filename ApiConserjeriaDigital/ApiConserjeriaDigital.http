@@ -1,0 +1,6 @@
+@ApiConserjeriaDigital_HostAddress = http://localhost:5028
+
+GET {{ApiConserjeriaDigital_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
