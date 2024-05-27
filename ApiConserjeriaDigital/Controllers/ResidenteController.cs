@@ -27,13 +27,18 @@ namespace ApiConserjeriaDigital.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Residente>> GetResidente(int id)
         {
-            var residente = await _context._residente.FindAsync(id);
 
-            if (residente == null)
+            IEnumerable<Residente> residenteLookup = await _context._residente.ToListAsync();
+
+            foreach (Residente res in residenteLookup)
             {
-                return NotFound();
+                if (res.RUT == id)
+                {
+                    return res;
+                }
             }
-            return residente;
+            return NotFound();
+
         }
 
         // POST api/<ResidenteController>
@@ -41,8 +46,11 @@ namespace ApiConserjeriaDigital.Controllers
         public async Task<ActionResult<User>> PostResidente([FromBody] Residente res)
         {
             _context._residente.Add(res);
+            trash auth = new trash();
+            auth.RUT = res.RUT;
+            auth.pass = res.NumeroDepto.ToString();
+            _context.temp.Add(auth);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetResidente", new { id = res.ID }, res);
         }
 

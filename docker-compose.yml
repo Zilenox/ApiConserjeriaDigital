@@ -3,7 +3,7 @@ version: '3.4'
 services:
   apiconserjeriadigital:
     image: ${DOCKER_REGISTRY-}apiconserjeriadigital
-    container_name: Api_conserjeria
+    container_name: apiconserjeria
     build:
       context: .
       dockerfile: ApiConserjeriaDigital/Dockerfile
