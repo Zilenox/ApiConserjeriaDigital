@@ -44,7 +44,7 @@ namespace ApiConserjeriaDigital.Database
                                     RUT = 173334440,
                                     Nombre = "Diego",
                                     NumeroDepto = 205,
-                                    Casilla = 1
+                                    Casilla = 0
                                 };
                         this._residente.Add(demoRes);
                         this._residente.Add(demoRes2);
@@ -96,8 +96,31 @@ namespace ApiConserjeriaDigital.Database
                           this.temp.Add(demoPass2);
                           this.temp.Add(demoPass4);
                           this.temp.Add(demoPass5);
+                        Publicacion demopub =
+                              new Publicacion
+                              {
+                                  Id = 0,
+                                  Note = "Corte general de agua, mañana a las 9AM"
+                              };
+                        this.Pizarra.Add(demopub);
 
-                          this.SaveChangesAsync();
+                        Correspondencia cartaDemo =
+                            new Correspondencia
+                            {
+                                Id = 0,
+                                Destinatario = 103,
+                                tipo = "Carta"
+                            };
+                        Correspondencia cartaDemo2 =
+                            new Correspondencia
+                            {
+                                Id = 0,
+                                Destinatario = 103,
+                                tipo = "Encomienda"
+                            };
+                        this.Casilla.Add(cartaDemo);
+                        this.Casilla.Add(cartaDemo2);
+                        this.SaveChangesAsync();
 
                     }
 
