@@ -27,13 +27,16 @@ namespace ApiConserjeriaDigital.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUsuario(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            IEnumerable<User> userLookup = await _context.Usuarios.ToListAsync();
 
-            if (usuario == null)
+            foreach (User res in userLookup)
             {
-                return NotFound();
+                if (res.RUT == id)
+                {
+                    return res;
+                }
             }
-            return usuario;
+            return NotFound();
         }
 
         // POST api/<UserController>
